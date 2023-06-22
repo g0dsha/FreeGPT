@@ -47,23 +47,14 @@ To get started with this project, you'll need to clone the repository and have [
 Run the following command to clone the repository:  
 
 ```
-git clone https://github.com/ramonvc/gptfree-jailbreak-webui.git
+git clone https://github.com/Em1tSan/freegpt-webui-ru.git
 ```
 
-### Install Dependencies :wrench: 
-Navigate to the project directory:
-```
-cd gptfree-jailbreak-webui
-```
-
-Install the dependencies:
-```
-pip install -r requirements.txt
 ```
 ## Running the Application :rocket:
-To run the application, run the following command:
+To run the application, open:
 ```
-python run.py
+start_portable.bat
 ```
 
 Access the application in your browser using the URL:
