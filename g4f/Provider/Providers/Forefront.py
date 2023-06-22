@@ -4,9 +4,8 @@ import requests
 from ...typing import sha256, Dict, get_type_hints
 
 url = 'forefront.com'
-model = ['gpt-3.5-turbo']
+model = ['gpt-3.5-turbo', 'gpt-4']
 supports_stream = True
-
 
 def _create_completion(model: str, messages: list, stream: bool, **kwargs):
     json_data = {
@@ -21,15 +20,17 @@ def _create_completion(model: str, messages: list, stream: bool, **kwargs):
         'internetMode': 'auto'
     }
 
-    response = requests.post('https://streaming.tenant-forefront-default.knative.chi.coreweave.com/free-chat',
-                             json=json_data, stream=True)
+    response = requests.post( 'https://streaming.tenant-forefront-default.knative.chi.coreweave.com/free-chat',
+        json=json_data, stream=True)
 
-    for token in response.iter_lines():
+    for token in response.iter_lines(): 
         if b'delta' in token:
-            yield json.loads(token.decode().split('data: ')[1])['delta']
-
+            token = json.loads(token.decode().split('data: ')[1])['delta']
+            yield (token)
 
 params = f'g4f.Providers.{os.path.basename(__file__)[:-3]} supports: ' + \
-    '(%s)' % ', '.join(
-        [f"{name}: {get_type_hints(_create_completion)[name].__name__}" for name in 
-         _create_completion.__code__.co_varnames[:_create_completion.__code__.co_argcount]])
+    '(%s)' % ', '.join([f"{name}: {get_type_hints(_create_completion)[name].__name__}" for name in _create_completion.__code__.co_varnames[:_create_completion.__code__.co_argcount]])
+
+
+
+

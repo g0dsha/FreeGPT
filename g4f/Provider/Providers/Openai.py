@@ -19,8 +19,8 @@ def _create_completion(model: str, messages: list, stream: bool, **kwargs):
     })
     
     try:
-        subprocess.run(["python3", "--version"], capture_output=True, check=True)
-        cmd = ["python3", f"{path}/helpers/openai.py", config]
+        subprocess.run(["python", "--version"], capture_output=True, check=True)
+        cmd = ["python", f"{path}/helpers/openai.py", config]
     except subprocess.CalledProcessError:
         cmd = ["python", f"{path}/helpers/openai.py", config]
 

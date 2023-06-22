@@ -19,7 +19,7 @@
 		<link
 			rel="stylesheet"
 			href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@latest/build/styles/base16/dracula.min.css" />
-		<title>FreeGPT</title>
+		<title>FreeGPT | Repack by https://t.me/neurogen_news</title>
 	</head>
 
 	<body>
@@ -28,20 +28,19 @@
 				<div class="top">
 					<button class="button" onclick="new_conversation()">
 						<i class="fa-regular fa-plus"></i>
-						<span>New Conversation</span>
+						<span>Новый диалог</span>
 					</button>
 					<div class="spinner"></div>
 				</div>
 				<div class="sidebar-footer">
 					<button class="button" onclick="delete_conversations()">
 						<i class="fa-regular fa-trash"></i>
-						<span>Clear Conversations</span>
+						<span>Очистить диалоги</span>
 					</button>
-					<a class="info" href="https://github.com/ramonvc/gptfree-jailbreak-webui" target="_blank">
-						<i class="fa-brands fa-github"></i>
-						<span class="conversation-title">
-							Author: @ramonvc<br />
-							Version: 0.0.7-Alpha<br />
+					<a class="info" href="https://t.me/neurogen_news" target="_blank">
+						<i class="fa-brands fa-telegram"></i>
+						<span class="conversation-title"><br />
+							Repack cделан https://t.me/neurogen_news<br />
 						</span>
 					</a>
 				</div>
@@ -49,7 +48,7 @@
 			<div class="conversation">
 				<div class="stop-generating stop-generating-hidden">
 					<button class="button" id="cancelButton">
-						<span>Stop Generating</span>
+						<span>Остановить</span>
 					</button>
 				</div>
 				<div class="box" id="messages"></div>
@@ -57,7 +56,7 @@
 					<div class="box input-box">
 						<textarea
 							id="message-input"
-							placeholder="Ask a question"
+							placeholder="Задать вопрос"
 							cols="30"
 							rows="10"
 							style="white-space: pre-wrap"></textarea>
@@ -71,22 +70,24 @@
 						<div class="buttons">
 							<div class="field">
 								<select class="dropdown" name="model" id="model">
-									<option value="gpt-3.5-turbo">GPT-3.5</option>
-									<option value="gpt-4" selected>GPT-4</option>
+									<option value="gpt-3.5-turbo">Модель: GPT-3.5-Turbo</option>
+									<option value="gpt-4" selected>Модель: GPT-4</option>
 								</select>
 							</div>
 							<div class="field">
 								<select class="dropdown" name="jailbreak" id="jailbreak">
-									<option value="default" selected>Default</option>
-									<option value="gpt-dan-11.0">DAN</option>
-									<option value="gpt-evil">Evil</option>
+									<option value="default" selected>Режим: Стандартный</option>
+									<option value="gpt-dan-11.0">Режим: DAN</option>
+									<option value="gpt-dan-2.0">Режим: DAN 2.0</option>
+									<option value="gpt-evil">Режим: Evil</option>
+									<option value="gpt-dev-2.0">Режим: DEV 2.0</option>
 								</select>
 							</div>
 						</div>
 						<div class="field checkbox">
 							<input type="checkbox" id="switch" />
 							<label for="switch"></label>
-							<span>Web Access</span>
+							<span>Доступ в Интернет</span>
 						</div>
 					</div>
 				</div>

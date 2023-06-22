@@ -6,7 +6,7 @@ import subprocess
 from ...typing import sha256, Dict, get_type_hints
 
 url = 'https://you.com'
-model = 'gpt-3.5-turbo'
+model = ['gpt-3.5-turbo']
 supports_stream = True
 
 
@@ -18,9 +18,9 @@ def _create_completion(model: str, messages: list, stream: bool, **kwargs):
     })
 
     try:
-        subprocess.run(["python3", "--version"],
+        subprocess.run(["python", "--version"],
                        capture_output=True, check=True)
-        cmd = ["python3", f"{path}/helpers/you.py", config]
+        cmd = ["python", f"{path}/helpers/you.py", config]
     except subprocess.CalledProcessError:
         cmd = ["python", f"{path}/helpers/you.py", config]
 

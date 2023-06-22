@@ -2,7 +2,7 @@ import os, requests, uuid
 from ...typing import sha256, Dict, get_type_hints
 
 url = 'https://ora.ai'
-model = ['gpt-3.5-turbo', 'gpt-4']
+model = ['gpt-3.5-turbo']
 supports_stream = False
 
 def _create_completion(model: str, messages: list, stream: bool, **kwargs):

@@ -23,7 +23,7 @@ class Model(metaclass=MetaModels):
     class davinvi_003:
         name: str = 'davinvi-003'
         base_provider: str = 'openai'
-        best_site: Provider.Provider = Provider.Forefront
+        best_site: Provider.Provider = Provider.Vercel
         
 class Utils:
     convert: dict = {
@@ -37,13 +37,13 @@ class ChatCompletion:
         try:
             if isinstance(model, str):
                 model = Utils.convert[model]
-
+            
             engine = model.best_site if not provider else provider
-            if not engine.supports_stream and stream:
+            if not engine.supports_stream and stream == True:
                 print(
                     f"ValueError: {engine.__name__} does not support 'stream' argument", file=sys.stderr)
                 sys.exit(1)
-
+            
             return (engine._create_completion(model.name, messages, stream, **kwargs)
                     if stream else ''.join(engine._create_completion(model.name, messages, stream, **kwargs)))
 

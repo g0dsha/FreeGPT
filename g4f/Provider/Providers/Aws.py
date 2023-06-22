@@ -4,7 +4,7 @@ import requests
 from ...typing import sha256, Dict, get_type_hints
 
 url = 'https://4aiu6ctrknfxkoaigkigzh5lwm0cciuc.lambda-url.ap-east-1.on.aws/chat/completions'
-model = ['gpt-3.5-turbo', 'gpt-4']
+model = ['gpt-3.5-turbo']
 supports_stream = False
 
 class Auth(requests.auth.AuthBase):

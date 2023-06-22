@@ -82,6 +82,9 @@ urllib3==2.0.3
 validators==0.20.0
 watchdog==3.0.0
 websocket-client==1.5.3
+websocket
+quickjs
+curl_cffi
 Werkzeug==2.3.6
 wsproto==1.2.0
 zipp==3.15.0
