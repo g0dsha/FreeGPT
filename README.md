@@ -23,7 +23,7 @@ git clone https://github.com/Em1tSan/freegpt-webui-ru.git
 
 ## Портативная версия
 
-Портативная версия не требует установки Python. Скачать ее можно в релизах.
+Портативная версия не требует установки Python. [Скачать ее можно в релизах](https://github.com/Em1tSan/freegpt-webui-ru/releases).
 
 ## Поддержка и вопросы
 
