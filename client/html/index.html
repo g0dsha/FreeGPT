@@ -71,7 +71,8 @@
 							<div class="field">
 								<select class="dropdown" name="model" id="model">
 									<option value="gpt-3.5-turbo">Модель: GPT-3.5-Turbo</option>
-									<option value="gpt-4" selected>Модель: GPT-4</option>
+									<option value="gpt-3.5-turbo-16k-0613">Модель: gpt-3.5-turbo-16k-0613</option>
+									<option value="gpt-4" selected>Модель: GPT-4 (нестабильна)</option>
 								</select>
 							</div>
 							<div class="field">
@@ -81,13 +82,17 @@
 									<option value="gpt-dan-2.0">Режим: DAN 2.0</option>
 									<option value="gpt-evil">Режим: Evil</option>
 									<option value="gpt-dev-2.0">Режим: DEV 2.0</option>
+									<option value="programming-assistant">Режим: Помощник по программированию</option>
+									<option value="editor">Режим: Редактор</option>
+									<option value="midjourney-promt">Режим: MidJourney promt generator</option>
+									<option value="sd-promt">Режим: Stable Diffusion promt generator</option>
 								</select>
 							</div>
 						</div>
 						<div class="field checkbox">
 							<input type="checkbox" id="switch" />
 							<label for="switch"></label>
-							<span>Доступ в Интернет</span>
+							<span>Разрешить ChatGPT доступ в Интернет</span>
 						</div>
 					</div>
 				</div>

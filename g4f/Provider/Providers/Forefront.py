@@ -15,7 +15,7 @@ def _create_completion(model: str, messages: list, stream: bool, **kwargs):
         'parentId': '',
         'workspaceId': '',
         'messagePersona': '607e41fe-95be-497e-8e97-010a59b2e2c0',
-        'model': 'gpt-4',
+        'model': model,
         'messages': messages[:-1] if len(messages) > 1 else [],
         'internetMode': 'auto'
     }

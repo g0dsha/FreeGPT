@@ -15,19 +15,20 @@ class Model(metaclass=MetaModels):
         base_provider: str = 'openai'
         best_site: Provider.Provider = Provider.Forefront
 
+    class gpt_35_turbo_16k:
+        name: str = 'gpt-3.5-turbo-16k-0613'
+        base_provider: str = 'openai'
+        best_site: Provider.Provider = Provider.Mishalsgpt
+
     class gpt_4:
         name: str = 'gpt-4'
         base_provider: str = 'openai'
-        best_site: Provider.Provider = Provider.Bing
-        
-    class davinvi_003:
-        name: str = 'davinvi-003'
-        base_provider: str = 'openai'
-        best_site: Provider.Provider = Provider.Vercel
+        best_site: Provider.Provider = Provider.Forefront
         
 class Utils:
     convert: dict = {
         'gpt-3.5-turbo': Model.gpt_35_turbo,
+        'gpt-3.5-turbo-16k-0613': Model.gpt_35_turbo_16k,
         'gpt-4': Model.gpt_4
     }
 

@@ -1,5 +1,6 @@
 from . import Provider
 from .Providers import (
+    Mishalsgpt,
     Phind, 
     You, 
     Bing, 
@@ -12,7 +13,9 @@ from .Providers import (
     Bard,
     Vercel,
     Pierangelo,
-    Forefront
+    Forefront,
+    Api2d,
+    Aitianhu,
 )
 
 Palm = Bard

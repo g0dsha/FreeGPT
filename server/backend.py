@@ -26,7 +26,7 @@ class Backend_Api:
             }
         }
 
-        # if self.use_auto_proxy:
+        #if self.use_auto_proxy:
         #    update_proxies = threading.Thread(
         #        target=update_working_proxies, daemon=True)
         #    update_proxies.start()
@@ -43,8 +43,8 @@ class Backend_Api:
             messages = build_messages(jailbreak)
 
             # Generate response
-            response = ChatCompletion.create(model=model, stream=True,
-                                             messages=messages, provider=g4f.Provider.Forefront)
+            response = ChatCompletion.create(model=model,
+                                             messages=messages)
 
             return self.app.response_class(generate_stream(response, jailbreak), mimetype='text/event-stream')
 

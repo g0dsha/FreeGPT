@@ -21,7 +21,7 @@ def _create_completion(model: str, messages: list, stream: bool, **kwargs):
 
     for line in iter(p.stdout.readline, b''):
         #print(line)
-        yield line.decode('utf-8') #[:-1]
+        yield line.decode('cp1251') #[:-1]
 
         
 params = f'g4f.Providers.{os.path.basename(__file__)[:-3]} supports: ' + \
