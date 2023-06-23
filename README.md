@@ -1,123 +1,34 @@
 # FreeGPT WebUI 
 ## GPT 3.5/4
+RU: Доступ к ChatGPT с вашего ПК без VPN. 
 
-❌ <strong>NOT REQUIRE ANY API KEY</strong> 🔑
+На данный момент добавлено и работает нормально:
 
-This project showcases an unlocked version of ChatGPT with WebUI. <br>
-Experience the power of ChatGPT with a user-friendly interface, completely free. <br> <br>
+- ChatGPT 3.5 Turbo
+- Веб доступ для бота
+- Джейлбрейки для расширения возможностей
 
-🚧 Not working correctly:
-- Auto Proxy
+Установка, Windows:
 
-_Coding to solve as quickly as possible_
+0) Скачайте и установите Python 3.10. Не забудьте применить, что надо добавить его в PATH
+1) Скачайте репозиторий:
+```
+git clone https://github.com/Em1tSan/freegpt-webui-ru.git
+```
+2) Запустите файл start.bat
+   Он создаст виртуальную среду и запустит установку зависимостей, а затем запустит скриптю
+3) Перейдите в браузере по адресу: http://127.0.0.1:1338
 
-## Table of Contents  
-- [To-Do List](#to-do-list-%EF%B8%8F)  
-- [Getting Started](#getting-started-white_check_mark)  
-  - [Cloning the Repository](#cloning-the-repository-inbox_tray)  
-  - [Install Dependencies](#install-dependencies-wrench)  
-- [Running the Application](#running-the-application-rocket)  
-- [Auto Proxy](#auto-proxy-)
-  - [Enable Auto Proxy](#enable-auto-proxy)
-- [Docker](#docker-)  
-  - [Prerequisites](#prerequisites)  
-  - [Running the Docker](#running-the-docker)  
-- [Incorporated Projects](#incorporated-projects-busts_in_silhouette)
-  - [WebUI](#webui) 
-  - [API FreeGPT](#api-freegpt)
-- [Legal Notice](#legal-notice) 
+Для других ОС инструкция для установки и запуска будет позже. 
 
-##
+## Портативная версия
 
-## To-Do List ✔️
+Портативная версия не требует установки Python. Скачать ее можно в релизах.
 
-- [x] Integrate the free GPT API into the WebUI
-- [x] Create Docker support
-- [x] Improve the Jailbreak functionality
-- [x] Add the GPT-4 model
-- [x] Enhance the user interface
-- [ ] Auto Proxy
-- [ ] Enable editing and creating Jailbreaks in the WebUI
-- [ ] Migrate the interface to React.js (?)
+## Поддержка и вопросы
 
-## Getting Started :white_check_mark:  
-To get started with this project, you'll need to clone the repository and have [Python](https://www.python.org/downloads/) installed on your system.  
-  
-### Cloning the Repository :inbox_tray:
-Run the following command to clone the repository:  
+Если у вас возникли какие то вопросы или вы в принципе хотите обсудить проект, то это можно сделать в моем телеграм канале: https://t.me/neurogen_news
 
-```
-git clone https://github.com/ramonvc/gptfree-jailbreak-webui.git
-```
-
-### Install Dependencies :wrench: 
-Navigate to the project directory:
-```
-cd gptfree-jailbreak-webui
-```
-
-Install the dependencies:
-```
-pip install -r requirements.txt
-```
-## Running the Application :rocket:
-To run the application, run the following command:
-```
-python run.py
-```
-
-Access the application in your browser using the URL:
-```
-http://127.0.0.1:1338
-```
-or
-```
-http://localhost:1338
-```
-## Auto Proxy 🔑  
-The application includes an auto proxy feature that allows it to work with multiple free proxy servers. 
-The freeGPT API refuses some connections, especially when hosted in the cloud (Azure, AWS, Google Cloud). 
-Auto proxy solves this problem automatically for you. 
-When enabled, the application will automatically fetch and test proxy servers, updating the list of working proxies every 30 minutes.  
-  
-### Enable Auto Proxy
-To enable it, just go to the `config.json` file and change the value of the "use_auto_proxy" to `true`.  
-
-```
-"use_auto_proxy": true
-```
-![use-auto-proxy-gif](https://github.com/ramonvc/gptfree-jailbreak-webui/assets/13617054/f83c6217-411c-404c-9f4c-8ae700a486d1)
-
-
-
-## Docker 🐳
-### Prerequisites
-Before you start, make sure you have installed [Docker](https://www.docker.com/get-started) on your machine.
-
-### Running the Docker
-Build the Docker image:
-```
-docker-compose build
-```
-
-Run the application using Docker Compose:
-```
-docker-compose up
-```
-
-Access the application in your browser using the URL:
-```
-http://127.0.0.1:1338
-```
-or
-```
-http://localhost:1338
-```
-
-When you're done using the application, stop the Docker containers using the following command:
-```
-docker-compose down
-```
 
 ## Incorporated Projects :busts_in_silhouette:
 I highly recommend visiting and supporting both projects.
