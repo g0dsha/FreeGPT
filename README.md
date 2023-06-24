@@ -10,7 +10,7 @@ RU: Доступ к ChatGPT с вашего ПК без VPN.
 
 Установка, Windows:
 
-0) Скачайте и установите [git](https://git-scm.com/download/win). Скачайте и установите [Python 3.10.X](https://www.python.org/downloads/) Не забудьте применить, что надо добавить его в PATH.
+0) Скачайте и установите [git](https://git-scm.com/download/win). Скачайте и установите [Python 3.10.X](https://www.python.org/downloads/) Не забудьте применить, что надо добавить его в PATH. Также скачайте [Visual Studio](https://visualstudio.microsoft.com/ru/downloads/) для компиляции библиотек.
    
 2) Скачайте репозиторий, для этого откройте Командную строку (Терминал) в папке, где хотите разместить freegpt-webui-ru и напишите команду:
 ```
