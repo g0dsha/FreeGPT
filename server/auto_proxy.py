@@ -10,7 +10,7 @@ def fetch_proxies():
     Returns:  
         list: A list of proxy servers in the format "IP:Port".  
     """  
-    url = "https://api.proxyscrape.com/v2/?request=displayproxies&protocol=http&timeout=10000&country=all&ssl=all&anonymity=all"
+    url = "https://www.proxy-list.download/api/v1/get?type=http"
     response = requests.get(url)
     if response.status_code == 200:
         return response.text.split("\r\n")[:-1]

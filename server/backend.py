@@ -1,3 +1,8 @@
+import os
+import time
+import json
+import random
+import threading
 import re
 import g4f
 from g4f import ChatCompletion
@@ -11,12 +16,7 @@ from server.config import special_instructions
 
 class Backend_Api:
     def __init__(self, app, config: dict) -> None:
-        """  
-        Initialize the Backend_Api class.  
-
-        :param app: Flask application instance  
-        :param config: Configuration dictionary  
-        """
+        
         self.app = app
         self.use_auto_proxy = config['use_auto_proxy']
         self.routes = {
@@ -26,25 +26,29 @@ class Backend_Api:
             }
         }
 
-        #if self.use_auto_proxy:
-        #    update_proxies = threading.Thread(
-        #        target=update_working_proxies, daemon=True)
-        #    update_proxies.start()
+        if self.use_auto_proxy:
+            update_proxies = threading.Thread(
+                target=update_working_proxies, daemon=True)
+            update_proxies.start()
 
     def _conversation(self):
-        """  
-        Handles the conversation route.  
 
-        :return: Response object containing the generated conversation stream  
-        """
         try:
+            streaming = request.json.get('stream', True)
             jailbreak = request.json['jailbreak']
             model = request.json['model']
             messages = build_messages(jailbreak)
 
+            #random_proxy = get_random_proxy() # получаем случайный прокси
+            #proxies = {"http": random_proxy, "https": random_proxy} # создаем словарь с прокси
+
+
             # Generate response
             response = ChatCompletion.create(model=model,
                                              messages=messages)
+            #if 'curl_cffi.requests.errors.RequestsError' in response:
+            #        response = ChatCompletion.create(model=model, stream=False,
+            #                                         messages=messages)
 
             return self.app.response_class(generate_stream(response, jailbreak), mimetype='text/event-stream')
 
@@ -59,12 +63,7 @@ class Backend_Api:
 
 
 def build_messages(jailbreak):
-    """  
-    Build the messages for the conversation.  
 
-    :param jailbreak: Jailbreak instruction string  
-    :return: List of messages for the conversation  
-    """
     _conversation = request.json['meta']['content']['conversation']
     internet_access = request.json['meta']['content']['internet_access']
     prompt = request.json['meta']['content']['parts'][0]
@@ -74,7 +73,7 @@ def build_messages(jailbreak):
     system_message = (
         f'You are ChatGPT also known as ChatGPT, a large language model trained by OpenAI. '
         f'Strictly follow the users instructions. '
-        f'Knowledge cutoff: 2021-09-01 Current date: {current_date}. '
+        f'Current date: {current_date}. '
         f'{set_response_language(prompt)}'
     )
 
@@ -96,18 +95,13 @@ def build_messages(jailbreak):
     conversation += [prompt]
 
     # Reduce conversation size to avoid API Token quantity error
-    conversation = conversation[-4:] if len(conversation) > 3 else conversation
+    conversation = conversation[-13:] if len(conversation) > 12 else conversation
 
     return conversation
 
 
 def fetch_search_results(query):
-    """  
-    Fetch search results for a given query.  
 
-    :param query: Search query string  
-    :return: List of search results  
-    """
     search = get('https://ddg-api.herokuapp.com/search',
                  params={
                      'query': query,
@@ -125,13 +119,7 @@ def fetch_search_results(query):
 
 
 def generate_stream(response, jailbreak):
-    """  
-    Generate the conversation stream.  
 
-    :param response: Response object from ChatCompletion.create  
-    :param jailbreak: Jailbreak instruction string  
-    :return: Generator object yielding messages in the conversation  
-    """
     if isJailbreak(jailbreak):
         response_jailbreak = ''
         jailbroken_checked = False
@@ -150,44 +138,25 @@ def generate_stream(response, jailbreak):
 
 
 def response_jailbroken_success(response: str) -> bool:
-    """Check if the response has been jailbroken.
 
-    :param response: Response string
-    :return: Boolean indicating if the response has been jailbroken
-    """
     act_match = re.search(r'ACT:', response, flags=re.DOTALL)
     return bool(act_match)
 
 
 def response_jailbroken_failed(response):
-    """  
-    Check if the response has not been jailbroken.  
 
-    :param response: Response string  
-    :return: Boolean indicating if the response has not been jailbroken  
-    """
     return False if len(response) < 4 else not (response.startswith ("GPT:") or response.startswith("ACT:"))
 
 
 def set_response_language(prompt):
-    """  
-    Set the response language based on the prompt content.  
 
-    :param prompt: Prompt dictionary  
-    :return: String indicating the language to be used for the response  
-    """
     translator = Translator()
     detected_language = translator.detect(prompt['content']).lang
     return f"You will respond in the language: {detected_language}. "
 
 
 def isJailbreak(jailbreak):
-    """  
-    Check if jailbreak instructions are provided.  
 
-    :param jailbreak: Jailbreak instruction string  
-    :return: Jailbreak instructions if provided, otherwise None  
-    """
     if jailbreak != "Default":
         return special_instructions[jailbreak] if jailbreak in special_instructions else None
     else:
