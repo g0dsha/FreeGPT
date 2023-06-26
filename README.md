@@ -10,13 +10,14 @@ RU: Доступ к ChatGPT с вашего ПК без VPN.
 
 Установка, Windows:
 
-0) Скачайте и установите [git](https://git-scm.com/download/win). Скачайте и установите [Python 3.10.X](https://www.python.org/downloads/) Не забудьте применить, что надо добавить его в PATH. Также скачайте [Visual Studio](https://visualstudio.microsoft.com/ru/downloads/) для компиляции библиотек.
+0) Скачайте и установите [git](https://git-scm.com/download/win). Скачайте и установите [Python 3.10.X](https://www.python.org/downloads/) Не забудьте применить, что надо добавить его в PATH.
+   Если в процессе установки у вас будут сыпаться ошибки, с упоминанием Visuial Studio - скачайте [Visual Studio](https://visualstudio.microsoft.com/ru/downloads/) для компиляции библиотек.
    
 2) Скачайте репозиторий, для этого откройте Командную строку (Терминал) в папке, где хотите разместить freegpt-webui-ru и напишите команду:
 ```
 git clone https://github.com/Em1tSan/freegpt-webui-ru.git
 ```
-2) Откройте папку freegpt-webui-ru и запустите файл start.bat
+2) Откройте папку freegpt-webui-ru и запустите файл install.bat, а затем start.bat
    Он создаст виртуальную среду и запустит установку зависимостей, а затем запустит скриптю
 3) Перейдите в браузере по адресу: http://127.0.0.1:1338
 
