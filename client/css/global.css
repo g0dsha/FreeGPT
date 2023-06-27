@@ -5,18 +5,18 @@
 	--section-gap: 24px;
 	--border-radius-1: 8px;
 
-	--colour-1: #181818;
-	--colour-2: #ccc;
-	--colour-3: #dadada;
-	--colour-4: #f0f0f0;
-	--colour-5: #181818;
-	--colour-6: #242424;
+    --colour-1: #000000;
+    --colour-2: #ccc;
+    --colour-3: #a5c2e3;
+    --colour-4: #f0f0f0;
+    --colour-5: #181818;
+    --colour-6: #242424;
 
-	--accent: #151718;
-	--blur-bg: #242627;
-	--blur-border: #242627;
-	--user-input: #f5f5f5;
-	--conversations: #555555;
+    --accent: #4680C2;
+    --blur-bg: #16101b66;
+    --blur-border: #84719040;
+    --user-input: #4680C2;
+    --conversations: #4680C2;
 }
 
 * {
