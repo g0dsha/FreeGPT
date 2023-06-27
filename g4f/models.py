@@ -35,7 +35,7 @@ class Model:
     class gpt_4:
         name: str = 'gpt-4'
         base_provider: str = 'openai'
-        best_provider: Provider.Provider = Provider.ChatgptAi
+        best_provider: Provider.Provider = Provider.Bing
         best_providers: list = [Provider.Bing, Provider.Lockchat]
 
     class claude_instant_v1_100k:

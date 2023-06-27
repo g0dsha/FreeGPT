@@ -8,7 +8,15 @@ from requests import get
 from server.auto_proxy import get_random_proxy, update_working_proxies
 from server.config import special_instructions
 import threading
+import argparse
 
+parser = argparse.ArgumentParser(description='FreeGPT')
+parser.add_argument("--web_results", help=" ", dest="web_results", type=int, default=5)
+parser.add_argument("--max_conversation_length", help=" ", dest="max_conversation_length", type=int, default=8)
+args = parser.parse_args()
+
+web_results = args.web_results
+max_conversation_length = args.max_conversation_length
 
 class Backend_Api:
     def __init__(self, app, config: dict) -> None:
@@ -78,6 +86,8 @@ def build_messages(jailbreak):
     :param jailbreak: Jailbreak instruction string  
     :return: List of messages for the conversation  
     """
+    max_length = max_conversation_length
+    
     internet_access = request.json['meta']['content']['internet_access']
     _conversation = request.json['meta']['content']['conversation']
     prompt = request.json['meta']['content']['parts'][0]
@@ -90,7 +100,7 @@ def build_messages(jailbreak):
     if internet_access:
         search = get('https://ddg-api.herokuapp.com/search', params={
                 'query': prompt["content"],
-                'limit': 5,
+                'limit': web_results, #задаем количество результатов через аргумент
         })
 
         blob = ''
@@ -108,18 +118,18 @@ def build_messages(jailbreak):
     conversation = [{'role': 'system', 'content': system_message}] + extra + special_instructions[jailbreak] + _conversation + [prompt]
 
     # Reduce conversation size to avoid API Token quantity error
-    conversation = conversation[-12:] if len(conversation) > 11 else conversation
+    conversation = conversation[-max_length:] if len(conversation) > (max_length - 1) else conversation
 
     return conversation
 
-
+"""
 def fetch_search_results(query):
-    """  
+      
     Fetch search results for a given query.  
 
     :param query: Search query string  
     :return: List of search results  
-    """
+    
     search = get('https://ddg-api.herokuapp.com/search',
                  params={
                      'query': query,
@@ -134,7 +144,7 @@ def fetch_search_results(query):
     results.append({'role': 'system', 'content': snippets})
     
     return results
-
+"""
 
 def generate_stream(response, jailbreak):
     """  
@@ -190,6 +200,7 @@ def set_response_language(prompt):
     """
     translator = Translator()
     detected_language = translator.detect(prompt['content']).lang
+    #return f"You will respond in the language: {detected_language}. "
     return f"You will respond in the language: {detected_language}. "
 
 
