@@ -2,7 +2,7 @@ import random
 import requests  
 import time  
 import threading  
-  
+import socket  
   
 def fetch_proxies():
     """Fetch a list of proxy servers from proxyscrape.com.  
@@ -18,26 +18,43 @@ def fetch_proxies():
     return []  
   
   
-def test_proxy(proxy, prompt, timeout):  
-    """Test the given proxy server with a specified prompt and timeout.  
-  
-    Args:  
-        proxy (str): The proxy server in the format "IP:Port".  
-        prompt (str): The test prompt to be used for testing.  
-        timeout (int): The maximum time in seconds allowed for the test.  
-    """  
-    try:  
-        start_time = time.time()  
-        # res = gpt3.Completion.create(prompt=prompt, proxy=proxy)  
-        end_time = time.time()  
-        response_time = end_time - start_time  
-  
-        if response_time < timeout:  
-            response_time = int(response_time*1000)  
-            print(f'proxy: {proxy} [{response_time}ms] ✅')  
-            add_working_proxy((proxy))  
-    except Exception as e:  
-        pass  
+def test_proxy(proxy, prompt, timeout):
+    """Test the given proxy server with a specified prompt and timeout.
+
+    Args:
+        proxy (str): The proxy server in the format "IP:Port".
+        prompt (str): The test prompt to be used for testing.
+        timeout (int): The maximum time in seconds allowed for the test.
+    """
+    try:
+        # Split IP and Port
+        ip, port = proxy.split(':')
+        
+        # Create a socket object
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        
+        # Start the timer
+        start_time = time.time()
+        
+        # Connect to the proxy server
+        sock.connect((ip, int(port)))
+        
+        # Stop the timer and calculate the elapsed time
+        end_time = time.time()
+        elapsed_time = end_time - start_time
+        
+        # Print the elapsed time
+        #print(f"Elapsed time: {elapsed_time} seconds")
+        
+        # Close the socket
+        sock.close()
+        
+        # Check if the elapsed time is below the timeout
+        if elapsed_time < timeout:
+            print(f"proxy: {proxy} ✅ | Elapsed time: {elapsed_time} seconds")
+            add_working_proxy(proxy)
+    except Exception as e:
+        pass
   
   
 def add_working_proxy(proxy):  
@@ -61,7 +78,7 @@ def remove_proxy(proxy):
         working_proxies.remove(proxy)  
   
   
-def get_working_proxies(prompt, timeout=5):  
+def get_working_proxies(prompt, timeout=1):  
     """Fetch and test proxy servers, adding working proxies to the global working_proxies list.  
   
     Args:  

@@ -7,6 +7,7 @@ from datetime import datetime
 from requests import get
 from server.auto_proxy import get_random_proxy, update_working_proxies
 from server.config import special_instructions
+import threading
 
 
 class Backend_Api:
@@ -26,10 +27,10 @@ class Backend_Api:
             }
         }
 
-        # if self.use_auto_proxy:
-        #    update_proxies = threading.Thread(
-        #        target=update_working_proxies, daemon=True)
-        #    update_proxies.start()
+        if self.use_auto_proxy:
+            update_proxies = threading.Thread(
+                target=update_working_proxies, daemon=True)
+            update_proxies.start()
   
     def _conversation(self):  
         """    
@@ -44,13 +45,16 @@ class Backend_Api:
             try:  
                 jailbreak = request.json['jailbreak']  
                 model = request.json['model']  
-                messages = build_messages(jailbreak)  
+                messages = build_messages(jailbreak)
+                proxy = get_random_proxy()  
     
                 # Generate response  
                 response = ChatCompletion.create(model=model, stream=True,  
-                                                messages=messages)  
+                                                messages=messages, proxy=proxy)  
+                print(f'Текущий прокси: {proxy}')
     
                 return self.app.response_class(generate_stream(response, jailbreak), mimetype='text/event-stream')  
+                
     
             except Exception as e:  
                 print(e)  
