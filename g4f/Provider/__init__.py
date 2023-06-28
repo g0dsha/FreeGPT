@@ -20,7 +20,8 @@ from .Providers import (
     ChatgptAi,
     ChatgptLogin,
     Phind,
-    Codelink
+    Codelink,
+    Easychat
 )
 
 Palm = Bard

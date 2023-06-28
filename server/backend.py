@@ -57,10 +57,13 @@ class Backend_Api:
                 proxy = get_random_proxy()  
     
                 # Generate response  
-                response = ChatCompletion.create(model=model, stream=True,  
-                                                messages=messages, proxy=proxy)  
-                print(f'Текущий прокси: {proxy}')
-    
+                if not self.use_auto_proxy:
+                    response = ChatCompletion.create(model=model, stream=True,  
+                                                messages=messages, proxy=proxy)
+                    print(f'Текущий прокси: {proxy}') 
+                else:
+                    response = ChatCompletion.create(model=model, stream=True, messages=messages)
+                
                 return self.app.response_class(generate_stream(response, jailbreak), mimetype='text/event-stream')  
                 
     
