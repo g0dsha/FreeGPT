@@ -8,19 +8,7 @@ RU: Доступ к ChatGPT с вашего ПК без VPN.
 - Веб доступ для бота
 - Джейлбрейки для расширения возможностей
 
-Установка, Windows:
-
-0) Скачайте и установите [git](https://git-scm.com/download/win). Скачайте и установите [Python 3.10.X](https://www.python.org/downloads/) Не забудьте применить, что надо добавить его в PATH. Также скачайте [Visual Studio](https://visualstudio.microsoft.com/ru/downloads/) для компиляции библиотек.
-   
-2) Скачайте репозиторий, для этого откройте Командную строку (Терминал) в папке, где хотите разместить freegpt-webui-ru и напишите команду:
-```
-git clone https://github.com/Em1tSan/freegpt-webui-ru.git
-```
-2) Откройте папку freegpt-webui-ru и запустите файл start.bat
-   Он создаст виртуальную среду и запустит установку зависимостей, а затем запустит скриптю
-3) Перейдите в браузере по адресу: http://127.0.0.1:1338
-
-Для других ОС инструкция для установки и запуска будет позже. 
+[Инструкции по установке и запуску для Windows, Linux и MacOS](https://github.com/Em1tSan/freegpt-webui-ru/wiki)
 
 ## Портативная версия
 
@@ -29,6 +17,8 @@ git clone https://github.com/Em1tSan/freegpt-webui-ru.git
 ## Поддержка и вопросы
 
 Если у вас возникли какие то вопросы или вы в принципе хотите обсудить проект, то это можно сделать в моем телеграм канале: https://t.me/neurogen_news
+
+Поддержать автора, подкинув на кофе, можно тут: [DonationAlerts](https://www.donationalerts.com/r/em1t)
 
 
 ## Incorporated Projects :busts_in_silhouette:
