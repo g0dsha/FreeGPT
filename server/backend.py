@@ -35,10 +35,10 @@ class Backend_Api:
             }
         }
 
-        if self.use_auto_proxy:
-            update_proxies = threading.Thread(
-                target=update_working_proxies, daemon=True)
-            update_proxies.start()
+        #if self.use_auto_proxy:
+        #    update_proxies = threading.Thread(
+        #        target=update_working_proxies, daemon=True)
+        #    update_proxies.start()
   
     def _conversation(self):  
         """    
@@ -48,21 +48,17 @@ class Backend_Api:
         """  
         max_retries = 3  
         retries = 0  
+        conversation_id = request.json['conversation_id']
         
         while retries < max_retries:  
             try:  
                 jailbreak = request.json['jailbreak']  
                 model = request.json['model']  
-                messages = build_messages(jailbreak)
-                proxy = get_random_proxy()  
+                messages = build_messages(jailbreak) 
     
                 # Generate response  
-                if not self.use_auto_proxy:
-                    response = ChatCompletion.create(model=model, stream=True,  
-                                                messages=messages, proxy=proxy)
-                    print(f'Текущий прокси: {proxy}') 
-                else:
-                    response = ChatCompletion.create(model=model, stream=True, messages=messages)
+                response = ChatCompletion.create(model=model, stream=True, chatId=conversation_id,  
+                                                messages=messages)
                 
                 return self.app.response_class(generate_stream(response, jailbreak), mimetype='text/event-stream')  
                 
@@ -157,7 +153,7 @@ def generate_stream(response, jailbreak):
     :param jailbreak: Jailbreak instruction string  
     :return: Generator object yielding messages in the conversation  
     """
-    if isJailbreak(jailbreak):
+    if getJailbreak(jailbreak):
         response_jailbreak = ''
         jailbroken_checked = False
         for message in response:
@@ -207,14 +203,19 @@ def set_response_language(prompt):
     return f"You will respond in the language: {detected_language}. "
 
 
-def isJailbreak(jailbreak):
+def getJailbreak(jailbreak):
     """  
     Check if jailbreak instructions are provided.  
 
     :param jailbreak: Jailbreak instruction string  
     :return: Jailbreak instructions if provided, otherwise None  
     """
-    if jailbreak != "Default":
-        return special_instructions[jailbreak] if jailbreak in special_instructions else None
+    if jailbreak != "default":
+        special_instructions[jailbreak][0]['content'] += special_instructions['two_responses_instruction']
+        if jailbreak in special_instructions:
+            special_instructions[jailbreak]
+            return special_instructions[jailbreak]
+        else:
+            return None
     else:
         return None

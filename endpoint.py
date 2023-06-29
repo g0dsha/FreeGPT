@@ -30,13 +30,10 @@ def chat_completions():
     streaming = request.json.get('stream', False)
     model = request.json.get('model', 'gpt-3.5-turbo')
     messages = request.json.get('messages')
-    proxy = get_random_proxy()
+    #proxy = get_random_proxy()
 
-    if args.enable_proxy:
-        response = ChatCompletion.create(model=model, stream=streaming,
-                                     messages=messages,proxy=proxy)
-    else:
-        response = ChatCompletion.create(model=model, stream=streaming,
+
+    response = ChatCompletion.create(model=model, stream=streaming,
                                      messages=messages)
     
     if not streaming:
