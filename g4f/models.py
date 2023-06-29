@@ -10,8 +10,8 @@ class Model:
     class gpt_35_turbo:
         name: str = 'gpt-3.5-turbo'
         base_provider: str = 'openai'
-        best_provider: Provider.Provider = Provider.Lockchat
-        best_providers: list = [Provider.Forefront, Provider.Lockchat]
+        best_provider: Provider.Provider = Provider.Yqcloud
+        best_providers: list = [Provider.Forefront, Provider.Lockchat, Provider.Yqcloud]
 
     class gpt_35_turbo_0613:
         name: str = 'gpt-3.5-turbo-0613'
@@ -36,7 +36,7 @@ class Model:
     class gpt_4:
         name: str = 'gpt-4'
         base_provider: str = 'openai'
-        best_provider: Provider.Provider = Provider.Codelink
+        best_provider: Provider.Provider = Provider.Lockchat
         best_providers: list = [Provider.Bing, Provider.Lockchat]
     
     class gpt_4_0613:
