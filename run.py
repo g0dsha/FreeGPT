@@ -2,7 +2,7 @@ from server.app import app
 from server.website import Website
 from server.backend import Backend_Api
 from json import load
-
+import webbrowser
 
 if __name__ == '__main__':
 
@@ -30,5 +30,6 @@ if __name__ == '__main__':
 
     # Run the Flask server
     print(f"Running on port {site_config['port']}")
+    webbrowser.open_new('http://127.0.0.1:1338/')
     app.run(**site_config)
     print(f"Closing port {site_config['port']}")

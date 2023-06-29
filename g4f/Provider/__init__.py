@@ -19,7 +19,9 @@ from .Providers import (
     Gravityengine,
     ChatgptAi,
     ChatgptLogin,
-    Phind
+    Phind,
+    Codelink,
+    Easychat
 )
 
 Palm = Bard

@@ -10,7 +10,8 @@ class Model:
     class gpt_35_turbo:
         name: str = 'gpt-3.5-turbo'
         base_provider: str = 'openai'
-        best_provider: Provider.Provider = Provider.Mishalsgpt
+        best_provider: Provider.Provider = Provider.Lockchat
+        best_providers: list = [Provider.Forefront, Provider.Lockchat]
 
     class gpt_35_turbo_0613:
         name: str = 'gpt-3.5-turbo-0613'
@@ -20,7 +21,7 @@ class Model:
     class gpt_35_turbo_16k_0613:
         name: str = 'gpt-3.5-turbo-16k-0613'
         base_provider: str = 'openai'
-        best_provider: Provider.Provider = Provider.Mishalsgpt
+        best_provider: Provider.Provider = Provider.Easychat
 
     class gpt_35_turbo_16k:
         name: str = 'gpt-3.5-turbo-16k'
@@ -35,7 +36,13 @@ class Model:
     class gpt_4:
         name: str = 'gpt-4'
         base_provider: str = 'openai'
-        best_provider: Provider.Provider = Provider.ChatgptAi
+        best_provider: Provider.Provider = Provider.Codelink
+        best_providers: list = [Provider.Bing, Provider.Lockchat]
+    
+    class gpt_4_0613:
+        name: str = 'gpt-4-0613'
+        base_provider: str = 'openai'
+        best_provider: Provider.Provider = Provider.Liaobots
         best_providers: list = [Provider.Bing, Provider.Lockchat]
 
     class claude_instant_v1_100k:
@@ -178,6 +185,7 @@ class ModelUtils:
         'gpt-3.5-turbo': Model.gpt_35_turbo,
         'gpt-3.5-turbo-0613': Model.gpt_35_turbo_0613,
         'gpt-4': Model.gpt_4,
+        'gpt-4-0613': Model.gpt_4_0613,
         'gpt-4-for-dev': Model.gpt_4_dev,
         'gpt-3.5-turbo-16k': Model.gpt_35_turbo_16k,
         'gpt-3.5-turbo-16k-0613': Model.gpt_35_turbo_16k_0613,
