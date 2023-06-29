@@ -48,7 +48,7 @@ class Backend_Api:
         """  
         max_retries = 3  
         retries = 0  
-        conversation_id = request.json['conversation_id']
+
         
         while retries < max_retries:  
             try:  
@@ -57,7 +57,7 @@ class Backend_Api:
                 messages = build_messages(jailbreak) 
     
                 # Generate response  
-                response = ChatCompletion.create(model=model, stream=True, chatId=conversation_id,  
+                response = ChatCompletion.create(model=model, stream=True,  
                                                 messages=messages)
                 
                 return self.app.response_class(generate_stream(response, jailbreak), mimetype='text/event-stream')  
