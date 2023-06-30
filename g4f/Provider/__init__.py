@@ -1,6 +1,6 @@
 from . import Provider
 from .Providers import (
-    Ails,
+    Ezcht,
     You,
     Bing,
     Yqcloud,
@@ -20,8 +20,9 @@ from .Providers import (
     ChatgptAi,
     ChatgptLogin,
     Phind,
-    Codelink,
-    Easychat
+    Easychat,
+    hteyun,
+    Weuseing
 )
 
 Palm = Bard

@@ -11,12 +11,13 @@ import threading
 import argparse
 
 parser = argparse.ArgumentParser(description='FreeGPT')
-parser.add_argument("--web_results", help=" ", dest="web_results", type=int, default=5)
-parser.add_argument("--max_conversation_length", help=" ", dest="max_conversation_length", type=int, default=8)
+parser.add_argument("--web_results", help=" ", dest="web_results", type=int, default=3)
+parser.add_argument("--max_conversation_length", help=" ", dest="max_conversation_length", type=int, default=4)
 args = parser.parse_args()
 
 web_results = args.web_results
 max_conversation_length = args.max_conversation_length
+max_length = max_conversation_length
 
 class Backend_Api:
     def __init__(self, app, config: dict) -> None:
@@ -85,7 +86,6 @@ def build_messages(jailbreak):
     :param jailbreak: Jailbreak instruction string  
     :return: List of messages for the conversation  
     """
-    max_length = max_conversation_length
     
     internet_access = request.json['meta']['content']['internet_access']
     _conversation = request.json['meta']['content']['conversation']
@@ -187,7 +187,7 @@ def response_jailbroken_failed(response):
     :param response: Response string  
     :return: Boolean indicating if the response has not been jailbroken  
     """
-    return False if len(response) < 4 else not (response.startswith ("GPT:") or response.startswith("ACT:"))
+    return False if len(response) < max_length else not (response.startswith ("GPT:") or response.startswith("ACT:"))
 
 
 def set_response_language(prompt):
