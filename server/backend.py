@@ -210,12 +210,7 @@ def getJailbreak(jailbreak):
     :param jailbreak: Jailbreak instruction string  
     :return: Jailbreak instructions if provided, otherwise None  
     """
-    if jailbreak != "default":
-        special_instructions[jailbreak][0]['content'] += special_instructions['two_responses_instruction']
-        if jailbreak in special_instructions:
-            special_instructions[jailbreak]
-            return special_instructions[jailbreak]
-        else:
-            return None
+    if jailbreak != "Default":	
+        return special_instructions[jailbreak] if jailbreak in special_instructions else None
     else:
         return None
