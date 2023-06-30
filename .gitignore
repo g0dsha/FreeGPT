@@ -158,3 +158,5 @@ cython_debug/
 #.idea/
 *.pyc
 *.pyc
+*.pyc
+g4f/__pycache__/models.cpython-310.pyc
