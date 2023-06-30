@@ -80,7 +80,7 @@ tls-client
 pypasser
 names
 colorama
-curl_cff
+curl_cffi
 selenium
 fake-useragent
 twocaptcha
