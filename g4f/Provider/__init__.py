@@ -22,7 +22,8 @@ from .Providers import (
     Phind,
     Easychat,
     hteyun,
-    Weuseing
+    Weuseing,
+    Fakeopen
 )
 
 Palm = Bard

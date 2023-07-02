@@ -1,3 +1,4 @@
+import random
 from g4f import Provider
 
 
@@ -10,27 +11,33 @@ class Model:
     class gpt_35_turbo:
         name: str = 'gpt-3.5-turbo'
         base_provider: str = 'openai'
-        best_provider: Provider.Provider = Provider.DeepAi
+        #best_provider: Provider.Provider = Provider.DeepAi
+        best_provider: Provider.Provider = random.choice([Provider.DeepAi, Provider.Fakeopen])
         best_providers: list = [Provider.Forefront, Provider.Lockchat, Provider.Yqcloud]
 
     class gpt_35_turbo_0613:
         name: str = 'gpt-3.5-turbo-0613'
         base_provider: str = 'openai'
-        best_provider: Provider.Provider = Provider.Gravityengine
+        #best_provider: Provider.Provider = Provider.Gravityengine
+        best_provider: Provider.Provider = random.choice([Provider.Gravityengine, Provider.Fakeopen])
+        
 
     class gpt_35_turbo_16k_0613:
         name: str = 'gpt-3.5-turbo-16k-0613'
         base_provider: str = 'openai'
-        best_provider: Provider.Provider = Provider.Ezcht
+        #best_provider: Provider.Provider = Provider.Ezcht
+        best_provider: Provider.Provider = random.choice([Provider.Ezcht, Provider.Fakeopen, Provider.Easychat])
         best_providers: list = [Provider.Easychat, Provider.Ezcht]
 
     class gpt_35_turbo_16k:
         name: str = 'gpt-3.5-turbo-16k'
         base_provider: str = 'openai'
-        best_provider: Provider.Provider = Provider.Gravityengine
+        #best_provider: Provider.Provider = Provider.Gravityengine
+        best_provider: Provider.Provider = random.choice([Provider.Gravityengine, Provider.Fakeopen])
 
-    class gpt_4_dev:
-        name: str = 'gpt-4-for-dev'
+
+    class gpt_dev:
+        name: str = 'gpt-for-dev'
         base_provider: str = 'openai'
         best_provider: Provider.Provider = Provider.Phind
 
@@ -187,7 +194,7 @@ class ModelUtils:
         'gpt-3.5-turbo-0613': Model.gpt_35_turbo_0613,
         'gpt-4': Model.gpt_4,
         'gpt-4-0613': Model.gpt_4_0613,
-        'gpt-4-for-dev': Model.gpt_4_dev,
+        'gpt-for-dev': Model.gpt_dev,
         'gpt-3.5-turbo-16k': Model.gpt_35_turbo_16k,
         'gpt-3.5-turbo-16k-0613': Model.gpt_35_turbo_16k_0613,
         
