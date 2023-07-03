@@ -4,7 +4,7 @@ import json
 from ...typing import sha256, Dict, get_type_hints
 
 url = 'https://gpt4.gravityengine.cc'
-model = ['gpt-3.5-turbo-16k', 'gpt-3.5-turbo-0613']
+model = ['gpt-3.5-turbo-16k', 'gpt-3.5-turbo-0613', 'gpt-3.5-turbo']
 supports_stream = True
 needs_auth = False
 
