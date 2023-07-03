@@ -12,7 +12,7 @@ class Model:
         name: str = 'gpt-3.5-turbo'
         base_provider: str = 'openai'
         #best_provider: Provider.Provider = Provider.DeepAi
-        best_provider: Provider.Provider = random.choice([Provider.DeepAi, Provider.Fakeopen])
+        best_provider: Provider.Provider = random.choice([Provider.DeepAi, Provider.Gravityengine])
         best_providers: list = [Provider.Forefront, Provider.Lockchat, Provider.Yqcloud]
 
     class gpt_35_turbo_0613:
