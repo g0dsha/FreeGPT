@@ -1,4 +1,4 @@
-# FreeGPT WebUI by Neurogen
+# FreeGPT by Neurogen
 ## GPT 3.5/4
 RU: Доступ к ChatGPT с вашего ПК без VPN. Интерфейс переведен на русский язык.
 
@@ -11,6 +11,7 @@ RU: Доступ к ChatGPT с вашего ПК без VPN. Интерфейс 
 - Использование данных из сети для формирования ответов
 - Джейлбрейки для расширения возможностей и снятия цензуры
 - Контекст беседы
+- Режим endpoint для работы с API
 
 [Инструкции по установке и запуску для Windows, Linux и MacOS](https://github.com/Em1tSan/freegpt-webui-ru/wiki)
 
