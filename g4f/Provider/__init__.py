@@ -23,7 +23,8 @@ from .Providers import (
     Easychat,
     hteyun,
     Weuseing,
-    Fakeopen
+    Fakeopen,
+    Better
 )
 
 Palm = Bard
