@@ -12,21 +12,21 @@ class Model:
         name: str = 'gpt-3.5-turbo'
         base_provider: str = 'openai'
         #best_provider: Provider.Provider = Provider.DeepAi
-        best_provider: Provider.Provider = random.choice([Provider.DeepAi, Provider.Gravityengine, Provider.Better])
+        best_provider: Provider.Provider = random.choice([Provider.DeepAi, Provider.Gravityengine])
         best_providers: list = [Provider.Forefront, Provider.Lockchat, Provider.Yqcloud, Provider.Better]
 
     class gpt_35_turbo_0613:
         name: str = 'gpt-3.5-turbo-0613'
         base_provider: str = 'openai'
         #best_provider: Provider.Provider = Provider.Gravityengine
-        best_provider: Provider.Provider = random.choice([Provider.Gravityengine, Provider.Fakeopen, Provider.Better])
+        best_provider: Provider.Provider = random.choice([Provider.Gravityengine, Provider.Fakeopen])
         
 
     class gpt_35_turbo_16k_0613:
         name: str = 'gpt-3.5-turbo-16k-0613'
         base_provider: str = 'openai'
         #best_provider: Provider.Provider = Provider.Ezcht
-        best_provider: Provider.Provider = random.choice([Provider.Ezcht, Provider.Fakeopen, Provider.Easychat, Provider.Better])
+        best_provider: Provider.Provider = random.choice([Provider.Ezcht, Provider.Fakeopen, Provider.Easychat])
         best_providers: list = [Provider.Easychat, Provider.Ezcht]
 
     class gpt_35_turbo_16k:
@@ -44,7 +44,7 @@ class Model:
     class gpt_4:
         name: str = 'gpt-4'
         base_provider: str = 'openai'
-        best_provider: Provider.Provider = Provider.Better
+        best_provider: Provider.Provider = Provider.Lockchat
         best_providers: list = [Provider.Bing, Provider.Lockchat]
     
     class gpt_4_0613:
