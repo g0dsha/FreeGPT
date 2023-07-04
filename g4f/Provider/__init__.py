@@ -24,7 +24,10 @@ from .Providers import (
     hteyun,
     Weuseing,
     Fakeopen,
-    Better
+    Better,
+    Alpha,
+    Nino,
+    Lsdev
 )
 
 Palm = Bard

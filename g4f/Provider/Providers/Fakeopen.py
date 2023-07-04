@@ -22,7 +22,7 @@ def _create_completion(model: str, messages: list, stream: bool, **kwargs):
         'accept': 'text/event-stream',  
         'Cache-Control': 'no-cache',  
         'Proxy-Connection': 'keep-alive',  
-        'Authorization': f"Bearer {os.environ.get('FAKE_OPEN_KEY', 'pk-this-is-a-real-free-api-key-pk-for-everyone')}",  
+        'Authorization': f"Bearer {os.environ.get('FAKE_OPEN_KEY', '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')}",  
     }  
   
     json_data = {  
@@ -36,16 +36,25 @@ def _create_completion(model: str, messages: list, stream: bool, **kwargs):
         'https://ai.fakeopen.com/v1/chat/completions', headers=headers, json=json_data, stream=True  
     )  
   
-    for token in response.iter_lines():  
-        decoded = token.decode('utf-8')  
-        if decoded == '[DONE]':  
-            break  
-        if decoded.startswith('data: '):  
-            data_str = decoded.replace('data: ', '')  
-            if data_str != '[DONE]':  
-                data = json.loads(data_str)  
-                if 'choices' in data and 'delta' in data['choices'][0] and 'content' in data['choices'][0]['delta']:  
-                    yield data['choices'][0]['delta']['content']  
+    for line in response.iter_lines():
+        decoded = line.decode('utf-8')
+        if decoded.startswith('data: '):
+            data_str = decoded.replace('data: ', '')
+            # Check if the data_str is valid JSON before loading it
+            try:
+                data = json.loads(data_str)
+                if 'choices' in data and 'delta' in data['choices'][0]:
+                    delta = data['choices'][0]['delta']
+                    content = delta.get('content', '')
+                    finish_reason = delta.get('finish_reason', '')
+
+                    if finish_reason == 'stop':
+                        break
+                    if content:
+                        yield content
+            except json.JSONDecodeError:
+                # Handle the invalid JSON case
+                print(f"Invalid JSON: {data_str}")
 
 
   
