@@ -20,4 +20,4 @@ COPY . .
     
 ENV PATH=/root/.local/bin:$PATH    
     
-CMD ["python3", "./run.py"]  
+CMD ["python3", "./endpoint.py"]  
