@@ -2,6 +2,8 @@ import time
 import json
 import random
 import time
+from gevent import pywsgi
+import socket
 
 from flask import Flask, request
 from flask_cors import CORS
@@ -14,6 +16,7 @@ CORS(app)
 
 @app.route("/chat/completions", methods=['POST'])
 @app.route("/v1/chat/completions", methods=['POST'])
+@app.route("/", methods=['POST'])
 def chat_completions():
     streaming = request.json.get('stream', False)
     model = request.json.get('model', 'gpt-3.5-turbo')
@@ -92,10 +95,21 @@ def chat_completions():
 
 
 if __name__ == '__main__':
-    config = {
+    site_config = {
         'host': '0.0.0.0',
         'port': 1337,
         'debug': False
     }
 
-    app.run(**config)
+    
+    hostname = socket.gethostname()
+    ip_address = socket.gethostbyname(hostname)
+
+    # Run the Flask server by WSGI
+    print(f"Running on http://127.0.0.1:{site_config['port']}")
+    print(f"Running on http://{ip_address}:{site_config['port']}")
+
+    server = pywsgi.WSGIServer(('0.0.0.0', site_config['port']), app)
+    server.serve_forever()
+
+    print(f"Closing {ip_address}:{site_config['port']}")
